@@ -1,0 +1,102 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<!-- Formulario en el recuadro-->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container pt-20">
+    <h1 class="display-16">Formulario de Evaluacion de Empleado</h1>
+
+  </div>
+</div>
+
+<div class="row">
+ <div class="col-md-8">
+ <!-- mensajes-->
+   {% with messages = get_flashed_messages() %}
+   {% if messages %}
+   {% for message in messages %}
+
+   <!--INGRESAMOS EL BOOSTRAP-->
+   <div class="alert alert-warning alert-dismissible fade show" role="alert">
+   <p>{{ message }}</p>
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<!--recuadro del formulario-->
+
+   <div class="card card-body">
+
+    &nbsp;<p><font size="4">DATOS PERSONALES</font></p>
+     <form action="/add_contact" method="POST">
+       <br>
+      &nbsp;NOMBRE: &nbsp; <input type="text" name="fullname"  placeholder="Nombre">&nbsp;&nbsp;
+      &nbsp;CEDULA: &nbsp; <input type="text" name="phone" placeholder="Cedula">&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;PUESTO: &nbsp; <input type="text" name="email" placeholder="Puesto">&nbsp;&nbsp;&nbsp;&nbsp;
+       <br> <br> <br>
+       <p><font size="4"> Metricas de Puntuación: &nbsp; (1,2) Bajo  &nbsp;   (3,4)  Medio  &nbsp;   (5) Alto </font></p>
+        <br>
+        <p><font size="3">
+        1- Conocimientos y Habilidades:&nbsp;&nbsp;&nbsp;<input type="text" style="width : 30px; heigth : 2px" name="num1"><br>
+        <br>
+        2- Responsabilidad: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="text" style="width : 30px; heigth : 2px" name="num2"><br>
+        <br>
+        3- Asistencia y Puntualidad:&emsp;&emsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width : 30px; heigth : 2px" name="num3"><br>
+        <br>
+        4- Trabajo en Equipo:&emsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&nbsp;&nbsp;<input type="text" style="width : 30px; heigth : 2px" name="num4"><br>
+        <br>
+        <p><font size="4"> Puntuación: &nbsp; (0 ,8) Bajo  &nbsp;   (9,16)  Medio  &nbsp;   (17 - 25) Alto </font></p>
+        <br>
+        TOTAL DE PUNTOS: &emsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width : 40px; heigth : 4px" name="num5"><br><br>
+        <br>
+        <br>
+        Comentario: <input type="text" style="width : 600px; heigth : 4px" name="num6">
+        <br>
+        <br>
+       <button type="submit" >
+         Save
+         </button>
+       </from>  
+
+</div>
+    </div>
+    
+    <div class="col-sm-8"></div>
+    <!--cambio<div class="col-md-6"> -->
+  
+      <table  class="table table-striped table-hover table-bordered table-lg bg-white">
+      <tablet>
+  <thead>
+   <tr>
+     <td> Nombre </td>
+     <td>Operations</td>
+    
+     </tr>
+     </thead>
+     <tbody>
+
+{% for contact in eval %}
+<tr>
+<!-- Datos que se muestran en la Pagina -->
+<td>{{ contact.1 }}</td>
+
+  <td>
+
+   <a href="/edit/{{contact.0}}" class="btn btn-secondary">Edit</a>
+   <a href="/delete/{{contact.0}}" class="btn btn-danger btn-delete">delete</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+
+  </table>
+ <!-- creacion de tabla y mostrar datos-->
+
+
+  {% endblock%}

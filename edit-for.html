@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+         <form action="/update/{{contact.0}}" method="POST">
+       <br>
+<div class="row">
+ <div class="col-md-8">
+ <!-- mensajes-->
+   {% with messages = get_flashed_messages() %}
+   {% if messages %}
+   {% for message in messages %}
+
+   <!--INGRESAMOS EL BOOSTRAP-->
+   <div class="alert alert-warning alert-dismissible fade show" role="alert">
+   <p>{{ message }}</p>
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<!--recuadro del formulario-->
+
+   <div class="card card-body">
+
+    &nbsp;<p><font size="4">DATOS PERSONALES</font></p>
+     <form action="/add_contact" method="POST">
+       <br>
+      &nbsp;NOMBRE: &nbsp; <input type="text" name="fullname"  placeholder="Nombre" value="{{contact.1 }}">&nbsp;&nbsp;
+      &nbsp;CEDULA: &nbsp; <input type="text" name="phone" placeholder="Cedula" value="{{contact.2 }}">&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;PUESTO: &nbsp; <input type="text" name="email" placeholder="Puesto" value="{{contact.3 }}">&nbsp;&nbsp;&nbsp;&nbsp;
+       <br> <br> <br>
+       <p><font size="4"> Metricas de Puntuación: &nbsp; (1,2) Bajo  &nbsp;   (3,4)  Medio  &nbsp;   (5) Alto </font></p>
+        <br>
+        <p><font size="3">
+        1- Conocimientos y Habilidades:&nbsp;&nbsp;&nbsp;<input type="text" style="width : 30px; heigth : 2px" name="num1" value="{{contact.4 }}"><br>
+        <br>
+        2- Responsabilidad: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width : 30px; heigth : 2px" name="num2" value="{{contact.5 }}"><br>
+        <br>
+        3- Asistencia y Puntualidad:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width : 30px; heigth : 2px" name="num3" value="{{contact.6 }}"><br>
+        <br>
+        4- Trabajo en Equipo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width : 30px; heigth : 2px" name="num4" value="{{contact.7 }}"><br>
+        <br>
+        <p><font size="4"> Puntuación: &nbsp; (0 ,8) Bajo  &nbsp;   (9,16)  Medio  &nbsp;   (17 - 25) Alto </font></p>
+        <br>
+        TOTAL DE PUNTOS: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width : 40px; heigth : 4px" name="num5" value="{{contact.8 }}"><br><br>
+        <br>
+        <br>
+        Comentario: <input type="text" style="width : 600px; heigth : 4px" name="num6" value="{{contact.9 }}">
+        <br>
+        <br>
+       <button type="submit" >
+         Save
+         </button>
+      
+   
+
+{% endblock %}
